@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Node Crud</title>
+    <style>
+      *{
+        font-weight: bold;
+      }
+      .shadow{
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+      }
+      .colorP{
+        color: #36C9B4 !important;
+      }
+      .colorS{
+        color: aliceblue;
+      }
+      .colorS:hover{
+        color: aliceblue !important;
+      }
+      .backcolor{
+        background-color: #36C9B4;
+      }
+
+
+      /* Pagination customization */
+      .page-link{
+        color: #36C9B4 !important;
+        border-radius: 30% !important;
+        margin-left: 6%;
+        margin-right: 6%;
+        text-align: center !important;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1) !important;
+        font-weight: lighter !important;
+
+      }
+      .page-item.active .page-link
+      {
+        background-color: #36C9B4 !important;
+        border-color: #36C9B4 !important;
+        color: aliceblue !important;
+        
+
+      }
+
+      .page-item:first-child .page-link{
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .page-item:last-child .page-link{
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1) !important;
+
+      }
+      
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow  bg-light">
+      <a class="navbar-brand colorP font-weight-light  " href="#"> <img src="/icon/CRUD.svg" height="50px"  alt=""> CRUD in Node js</a>
+    
+    </nav>
+
+    <h1 class="text-center colorP font-weight-light mt-3">Read</h1>
+
+    
+
+   
+
+ 
+
+
+ 
+
+
+
+    <div class="container mb-5">
+     <div class="text-right mb-3"> <a href="/create" class="btn backcolor colorS shadow "><img src="/icon/create.svg" height="20px" width="20px" alt=""> Create User</a>    </div> 
+
+<table class="table" >
+  <thead class=" backcolor colorS shadow"  >
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Edit/Delete</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+
+ <% for(var key in name) { %> 
+    <tr>
+      <th scope="row" ><%= name[key].id  %></th>
+      <td> <%= name[key].name %> </td>
+      <td><%= name[key].email %></td>
+      <td  > <a href="/update/<%= name[key].id %> " class="btn btn-outline-info "> <img src="icon/edit.svg" height="20px" width="20px" alt=""> Edit</a> <a href="/delete/<%= name[key].id %> " class="btn btn-outline-danger "> <img src="/icon/delete.svg" height="20px" width="20px" alt="">Delete</a></td>    
+    </tr>
+<% }; %> 
+  </tbody>
+</table>
+
+
+ 
+<nav aria-label="Page navigation example  " class="text-center  ">
+  <ul class="pagination   justify-content-center">
+
+
+    <!-- prev page -->
+    <% if(prev == 0){ %> 
+    <li class="page-item disabled ">
+      <a class="page-link" href="/?page=<%= prev %> " aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <% }else{ %>
+    <li class="page-item ">
+      <a class="page-link" href="/?page=<%= prev %> " aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>  
+    <% } %> 
+
+    <!-- Page numbers -->
+    <% if(prev != 0){ %>  <li class="page-item "><a class="page-link " href="/?page=<%= prev %> "><%= prev %></a></li> <% } %> 
+    <li class="page-item active   "><a class="page-link " href="/?page=<%= currentpage %> "><%= currentpage %> </a></li>
+    <% if(next != 0){ %>  <li class="page-item"><a class="page-link" href="/?page=<%= next %> "><%= next %></a></li> <% } %> 
+   
+
+   <!-- next page -->
+   <% if(next == 0 ){ %> 
+    <li class="page-item disabled">
+      <a class="page-link" href="/?page=<%= next %> " aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    <% }else{ %> 
+    <li class="page-item">
+      <a class="page-link" href="/?page=<%= next %> " aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    <% } %> 
+
+
+  </ul>
+</nav>
+
+
+
+
+</div>
+
+ 
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
